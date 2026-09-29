@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumo e Inversión Google Ads — Septiembre 2026</title>
+<style>
+  *{box-sizing:border-box; margin:0; padding:0}
+  img{max-width:100%}
+  :root{
+    --ocean:#023859; --blood:#6399BA; --seablue:#2A5E95;
+    --gray:#808080; --glossy:#D1D1D1;
+    --pos:#74AD52; --neg:#D72D41; --neu:#B8860B;
+    --bg:#F6F8FA; --surface:#FFFFFF; --surface-2:#EFF3F6;
+    --text:#132534; --text-dim:#4B6373; --border:#E1E7EC;
+    --neg-bg:#FCEAEC; --neg-border:#F2C6CC;
+    --neu-bg:#FFF6E4; --neu-border:#F3DFA6;
+    --chip-bg:#EEF3F7;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#081E2E; --surface:#0E2A3E; --surface-2:#0B2536;
+      --text:#E7EEF3; --text-dim:#9FB6C4; --border:#1B3B50;
+      --neg-bg:#3A1620; --neg-border:#6B2430;
+      --neu-bg:#3A2C0E; --neu-border:#6B4E16;
+      --chip-bg:#123249;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#081E2E; --surface:#0E2A3E; --surface-2:#0B2536;
+    --text:#E7EEF3; --text-dim:#9FB6C4; --border:#1B3B50;
+    --neg-bg:#3A1620; --neg-border:#6B2430;
+    --neu-bg:#3A2C0E; --neu-border:#6B4E16;
+    --chip-bg:#123249;
+  }
+  html{color-scheme:light dark}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Elms Sans','Segoe UI',Arial,sans-serif;
+    font-size:14px; line-height:1.5;
+  }
+  h1,h2,h3{font-weight:600; letter-spacing:-.01em}
+  .header{background:var(--ocean); color:#fff; padding:28px 32px 24px}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-bottom:6px}
+  .header h1{font-size:22px; margin:0 0 6px}
+  .header .sub{font-size:13px; color:#BFD6E8; display:flex; gap:18px; flex-wrap:wrap}
+  .header .sub b{color:#fff; font-variant-numeric:tabular-nums}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px}
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin:-20px 0 28px}
+  .kpi{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; box-shadow:0 2px 10px rgba(2,56,89,.06)}
+  .kpi .val{font-size:28px; font-weight:700; color:var(--ocean); font-variant-numeric:tabular-nums}
+  :root[data-theme="dark"] .kpi .val{color:#7FB2D9}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi .val{color:#7FB2D9}}
+  .kpi .lbl{font-size:12px; color:var(--text-dim); margin-top:2px}
+  .kpi.neg .val{color:var(--neg)}
+  .kpi.neu .val{color:var(--neu)}
+  section{margin:0 0 30px}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px}
+  .section-head h2{font-size:15px; color:var(--ocean); margin:0}
+  :root[data-theme="dark"] .section-head h2{color:#8FC1E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .section-head h2{color:#8FC1E8}}
+  .section-head .count{font-size:12px; color:var(--text-dim)}
+  .panel{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px}
+  .cov-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px 24px}
+  .cov-item{display:flex; gap:10px; align-items:flex-start}
+  .cov-check{flex:none; width:20px; height:20px; border-radius:50%; background:var(--pos); color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; margin-top:1px}
+  .cov-item b{display:block; font-size:13px}
+  .cov-item span{font-size:12px; color:var(--text-dim)}
+  .cov-note{margin-top:16px; padding-top:14px; border-top:1px solid var(--border); font-size:12px; color:var(--text-dim)}
+  .cov-note code, .cov-item code{background:var(--chip-bg); padding:1px 6px; border-radius:4px; font-size:11px}
+  .empty-note{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 20px; color:var(--text-dim); font-style:italic}
+  .card{border:1px solid var(--border); border-radius:10px; background:var(--surface); padding:16px 18px; margin-bottom:12px}
+  .card.estado-vencido, .card.estado-eliminada{border-color:var(--neg-border); background:var(--neg-bg)}
+  .card.estado-revisar, .card.estado-modificada{border-color:var(--neu-border); background:var(--neu-bg)}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
+  .card-id .cuenta{font-size:13px; font-weight:600; color:var(--ocean)}
+  :root[data-theme="dark"] .card-id .cuenta{color:#8FC1E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card-id .cuenta{color:#8FC1E8}}
+  .card-id .meta{font-size:12px; color:var(--text-dim); margin-top:2px}
+  .card-id .meta b{color:var(--text); font-weight:600}
+  .badge{font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; white-space:nowrap; letter-spacing:.01em}
+  .badge.vencido, .badge.eliminada{background:var(--neg); color:#fff}
+  .badge.revisar, .badge.modificada{background:var(--neu); color:#fff}
+  .fechas{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
+  .fecha-chip{display:flex; flex-direction:column; gap:1px; font-size:12.5px; padding:4px 10px; border-radius:7px; font-weight:700; border:1px solid transparent; line-height:1.3}
+  .fecha-chip .win{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:.8}
+  .fecha-chip.vencido, .fecha-chip.eliminada{background:#fff; border-color:var(--neg); color:var(--neg)}
+  .fecha-chip.revisar, .fecha-chip.modificada{background:#fff; border-color:var(--neu); color:var(--neu)}
+  .fecha-chip.vigente{background:#fff; border-color:var(--pos); color:var(--pos)}
+  :root[data-theme="dark"] .fecha-chip{background:transparent}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fecha-chip{background:transparent}}
+  details{margin-top:4px}
+  summary{cursor:pointer; font-size:12px; color:var(--seablue); font-weight:600; user-select:none}
+  :root[data-theme="dark"] summary{color:var(--blood)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) summary{color:var(--blood)}}
+  .ad-text{font-size:12.5px; color:var(--text-dim); margin-top:8px; line-height:1.6; background:var(--surface-2); border-radius:8px; padding:10px 12px}
+  footer{padding:22px 0 40px; text-align:center; font-size:11px; color:var(--text-dim)}
+  footer .note{max-width:640px; margin:0 auto 10px; line-height:1.6}
+  @media (max-width:600px){.wrap{padding:0 16px} .header{padding:24px 16px 20px}}
+
+  .maintabs{display:flex; gap:6px; margin:0 0 0; border-bottom:2px solid var(--border); flex-wrap:wrap; padding:0 32px}
+  .maintab{padding:13px 22px; font-size:13.5px; font-weight:700; color:var(--text-dim); background:none; border:none; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; font-family:inherit}
+  .maintab:hover{color:var(--ocean)}
+  .maintab.active{color:var(--ocean); border-bottom-color:var(--ocean)}
+  :root[data-theme="dark"] .maintab.active, :root[data-theme="dark"] .maintab:hover{color:#8FC1E8; border-bottom-color:#8FC1E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .maintab.active,:root:not([data-theme="light"]) .maintab:hover{color:#8FC1E8; border-bottom-color:#8FC1E8}}
+  .maintab .tag{font-size:10px; font-weight:700; color:#fff; background:var(--neg); padding:1px 7px; border-radius:20px; margin-left:6px}
+  .maintab .tag.zero{background:var(--glossy); color:var(--text-dim)}
+  .mainpanel{display:none; padding-top:24px}
+  .mainpanel.active{display:block}
+  .match-score{font-size:10.5px; color:var(--text-dim); font-weight:600; white-space:nowrap}
+
+  .search-wrap{margin:4px 0 16px}
+  .search-input{
+    width:100%; max-width:380px; padding:9px 14px; border-radius:8px;
+    border:1px solid var(--border); background:var(--surface); color:var(--text);
+    font-family:inherit; font-size:13px;
+  }
+  .search-input:focus{outline:2px solid var(--seablue); outline-offset:1px}
+  .sin-resultados{display:none; padding:10px 0 4px; color:var(--text-dim); font-style:italic; font-size:12.5px}
+
+  .tabla-wrap{overflow-x:auto; border:1px solid var(--border); border-radius:10px; background:var(--surface)}
+  table.consumo{width:100%; border-collapse:collapse; font-size:12.5px; white-space:nowrap}
+  table.consumo th{position:sticky; top:0; background:var(--surface-2); color:var(--text-dim); text-align:right; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 14px; border-bottom:1px solid var(--border)}
+  table.consumo th:first-child{text-align:left}
+  table.consumo td{padding:9px 14px; text-align:right; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums}
+  table.consumo td:first-child{text-align:left; font-weight:600; color:var(--text)}
+  table.consumo td.moneda{color:var(--text-dim); font-weight:400; text-align:center}
+  table.consumo tbody tr:hover{background:var(--surface-2)}
+  .pill{display:inline-block; padding:2px 9px; border-radius:20px; font-weight:700; font-size:11.5px}
+  .pill.over{background:var(--neg-bg); color:var(--neg)}
+  .pill.under{background:var(--neu-bg); color:var(--neu)}
+  .pill.ok{background:#EAF3E4; color:var(--pos)}
+  :root[data-theme="dark"] .pill.ok{background:#173418}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pill.ok{background:#173418}}
+  .pill.canal-alto{background:var(--neg-bg); color:var(--neg)}
+  .remanente.neg{color:var(--neg); font-weight:700}
+  .sin-dato{color:var(--text-dim); font-style:italic; font-weight:400}
+</style>
+</head>
+<body>
+
+    <div class="header">
+      <div class="eyebrow">GHL Hoteles · Google Ads API</div>
+      <h1>Consumo e Inversión Google Ads — Septiembre 2026</h1>
+      <div class="sub">
+        <span>Corte: <b>2026-09-29</b></span>
+        <span>Inicio de mes: <b>2026-09-01</b></span>
+        <span>Generado: <b>29/09/2026 15:07</b></span>
+      </div>
+    </div>
+<div class="wrap" style="padding-top:24px">
+
+    <div class="kpis">
+      <div class="kpi"><div class="val">45</div><div class="lbl">Propiedades reportadas</div></div>
+      <div class="kpi"><div class="val">96.7%</div><div class="lbl">Ritmo esperado a la fecha</div></div>
+      <div class="kpi neg"><div class="val">0</div><div class="lbl">Sobre ritmo (&gt;10 pts)</div></div>
+      <div class="kpi neu"><div class="val">22</div><div class="lbl">Bajo ritmo (&gt;10 pts)</div></div>
+      <div class="kpi neg"><div class="val">34</div><div class="lbl">Costo por canal ≥ 13%</div></div>
+    </div>
+<section>
+  <div class="section-head"><h2>Consumo por propiedad</h2><span class="count">45 hoteles</span></div>
+  
+    <div class="tabla-wrap">
+    <table class="consumo">
+      <thead>
+        <tr>
+          <th>Hotel</th>
+          <th>Moneda</th>
+          <th>Inversión a la fecha</th>
+          <th>Inversión aprobada del mes</th>
+          <th>% Consumido de lo aprobado</th>
+          <th>Ritmo vs esperado</th>
+          <th>Remanente del mes</th>
+          <th>Costo por Canal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bastion Luxury Hotel</td>
+          <td class="moneda">COP</td>
+          <td>0</td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td class="remanente"><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+        </tr>
+        <tr>
+          <td>Biohotel Organic Suites</td>
+          <td class="moneda">COP</td>
+          <td>4,337,989</td>
+          <td>4,326,000</td>
+          <td>100.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente neg">-11,989</td>
+          <td><span class="pill canal-alto">23.15%</span></td>
+        </tr>
+        <tr>
+          <td>GHL Armeria Real Hotel and Spa</td>
+          <td class="moneda">COP</td>
+          <td>2,289,098</td>
+          <td>3,699,000</td>
+          <td>61.9%</td>
+          <td><span class="pill under">-34.8 pts bajo ritmo</span></td>
+          <td class="remanente">1,409,902</td>
+          <td><span class="pill ok">12.53%</span></td>
+        </tr>
+        <tr>
+          <td>GHL Arsenal Hotel</td>
+          <td class="moneda">COP</td>
+          <td>6,135,767</td>
+          <td>8,951,000</td>
+          <td>68.5%</td>
+          <td><span class="pill under">-28.1 pts bajo ritmo</span></td>
+          <td class="remanente">2,815,233</td>
+          <td><span class="pill ok">11.06%</span></td>
+        </tr>
+        <tr>
+          <td>GHL Hotel Barranquilla</td>
+          <td class="moneda">COP</td>
+          <td>2,941,228</td>
+          <td>3,389,000</td>
+          <td>86.8%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">447,772</td>
+          <td><span class="pill canal-alto">19.12%</span></td>
+        </tr>
+        <tr>
+          <td>GHL Hotel Lago Titicaca</td>
+          <td class="moneda">USD</td>
+          <td>334.66</td>
+          <td>400.00</td>
+          <td>83.7%</td>
+          <td><span class="pill under">-13.0 pts bajo ritmo</span></td>
+          <td class="remanente">65.34</td>
+          <td><span class="pill ok">11.68%</span></td>
+        </tr>
+        <tr>
+          <td>GHL San Lazaro Art Hotel</td>
+          <td class="moneda">COP</td>
+          <td>2,896,157</td>
+          <td>4,252,000</td>
+          <td>68.1%</td>
+          <td><span class="pill under">-28.6 pts bajo ritmo</span></td>
+          <td class="remanente">1,355,843</td>
+          <td><span class="pill canal-alto">46.48%</span></td>
+        </tr>
+        <tr>
+          <td>GHL Style Hotel Bogotá Occidente</td>
+          <td class="moneda">COP</td>
+          <td>4,001,968</td>
+          <td>4,406,000</td>
+          <td>90.8%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">404,032</td>
+          <td><span class="pill canal-alto">13.66%</span></td>
+        </tr>
+        <tr>
+          <td>Geotel Antofagasta</td>
+          <td class="moneda">USD</td>
+          <td>549.58</td>
+          <td>745.00</td>
+          <td>73.8%</td>
+          <td><span class="pill under">-22.9 pts bajo ritmo</span></td>
+          <td class="remanente">195.42</td>
+          <td><span class="pill ok">12.06%</span></td>
+        </tr>
+        <tr>
+          <td>Geotel Calama</td>
+          <td class="moneda">USD</td>
+          <td>403.95</td>
+          <td>615.00</td>
+          <td>65.7%</td>
+          <td><span class="pill under">-31.0 pts bajo ritmo</span></td>
+          <td class="remanente">211.05</td>
+          <td><span class="pill canal-alto">13.12%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Bioxury</td>
+          <td class="moneda">COP</td>
+          <td>9,036,042</td>
+          <td>9,786,000</td>
+          <td>92.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">749,958</td>
+          <td><span class="pill ok">12.28%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Abadía Plaza</td>
+          <td class="moneda">COP</td>
+          <td>1,270,571</td>
+          <td>2,206,000</td>
+          <td>57.6%</td>
+          <td><span class="pill under">-39.1 pts bajo ritmo</span></td>
+          <td class="remanente">935,429</td>
+          <td><span class="pill canal-alto">42.72%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Capital</td>
+          <td class="moneda">COP</td>
+          <td>8,716,567</td>
+          <td>9,685,000</td>
+          <td>90.0%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">968,433</td>
+          <td><span class="pill canal-alto">14.27%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Collection 93</td>
+          <td class="moneda">COP</td>
+          <td>1,368,655</td>
+          <td>1,746,000</td>
+          <td>78.4%</td>
+          <td><span class="pill under">-18.3 pts bajo ritmo</span></td>
+          <td class="remanente">377,345</td>
+          <td><span class="pill canal-alto">19.27%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Grand Villavicencio</td>
+          <td class="moneda">COP</td>
+          <td>5,749,166</td>
+          <td>6,320,000</td>
+          <td>91.0%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">570,834</td>
+          <td><span class="pill canal-alto">14.58%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Hamilton</td>
+          <td class="moneda">COP</td>
+          <td>1,443,190</td>
+          <td>1,914,000</td>
+          <td>75.4%</td>
+          <td><span class="pill under">-21.3 pts bajo ritmo</span></td>
+          <td class="remanente">470,810</td>
+          <td><span class="pill canal-alto">14.44%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Montería</td>
+          <td class="moneda">COP</td>
+          <td>1,858,015</td>
+          <td>3,002,000</td>
+          <td>61.9%</td>
+          <td><span class="pill under">-34.8 pts bajo ritmo</span></td>
+          <td class="remanente">1,143,985</td>
+          <td><span class="pill canal-alto">13.65%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Portón Medellín</td>
+          <td class="moneda">COP</td>
+          <td>2,504,529</td>
+          <td>2,896,110</td>
+          <td>86.5%</td>
+          <td><span class="pill under">-10.2 pts bajo ritmo</span></td>
+          <td class="remanente">391,581</td>
+          <td><span class="pill canal-alto">13.94%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Relax Corales de Indias</td>
+          <td class="moneda">COP</td>
+          <td>14,893,661</td>
+          <td>20,812,000</td>
+          <td>71.6%</td>
+          <td><span class="pill under">-25.1 pts bajo ritmo</span></td>
+          <td class="remanente">5,918,339</td>
+          <td><span class="pill canal-alto">23.30%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Relax Costa Azul</td>
+          <td class="moneda">COP</td>
+          <td>9,664,011</td>
+          <td>11,268,500</td>
+          <td>85.8%</td>
+          <td><span class="pill under">-10.9 pts bajo ritmo</span></td>
+          <td class="remanente">1,604,489</td>
+          <td><span class="pill canal-alto">24.41%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Relax Hotel Club El Puente</td>
+          <td class="moneda">COP</td>
+          <td>4,999,107</td>
+          <td>5,059,000</td>
+          <td>98.8%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">59,893</td>
+          <td><span class="pill canal-alto">16.96%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Relax Sunrise</td>
+          <td class="moneda">COP</td>
+          <td>12,758,585</td>
+          <td>15,304,000</td>
+          <td>83.4%</td>
+          <td><span class="pill under">-13.3 pts bajo ritmo</span></td>
+          <td class="remanente">2,545,415</td>
+          <td><span class="pill canal-alto">21.31%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Style Barrancabermeja</td>
+          <td class="moneda">COP</td>
+          <td>908,432</td>
+          <td>927,000</td>
+          <td>98.0%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">18,568</td>
+          <td><span class="pill canal-alto">22.77%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Style Neiva</td>
+          <td class="moneda">COP</td>
+          <td>2,078,500</td>
+          <td>3,458,000</td>
+          <td>60.1%</td>
+          <td><span class="pill under">-36.6 pts bajo ritmo</span></td>
+          <td class="remanente">1,379,500</td>
+          <td><span class="pill canal-alto">16.26%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel GHL Style Yopal</td>
+          <td class="moneda">COP</td>
+          <td>1,625,444</td>
+          <td>1,800,000</td>
+          <td>90.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">174,556</td>
+          <td><span class="pill canal-alto">13.73%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Bogotá</td>
+          <td class="moneda">COP</td>
+          <td>5,977,420</td>
+          <td>6,534,000</td>
+          <td>91.5%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">556,580</td>
+          <td><span class="pill canal-alto">17.36%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Cartagena</td>
+          <td class="moneda">COP</td>
+          <td>14,175,523</td>
+          <td>15,704,462</td>
+          <td>90.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">1,528,939</td>
+          <td><span class="pill canal-alto">21.67%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta El Olivar</td>
+          <td class="moneda">USD</td>
+          <td>1,246.88</td>
+          <td>1,378.00</td>
+          <td>90.5%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">131.12</td>
+          <td><span class="pill canal-alto">16.86%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Osorno</td>
+          <td class="moneda">USD</td>
+          <td>719.40</td>
+          <td>797.00</td>
+          <td>90.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">77.60</td>
+          <td><span class="pill ok">11.67%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Pereira</td>
+          <td class="moneda">COP</td>
+          <td>5,474,434</td>
+          <td>8,785,000</td>
+          <td>62.3%</td>
+          <td><span class="pill under">-34.4 pts bajo ritmo</span></td>
+          <td class="remanente">3,310,566</td>
+          <td><span class="pill canal-alto">16.49%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Posadas del Inca Puno</td>
+          <td class="moneda">USD</td>
+          <td>166.87</td>
+          <td>400.00</td>
+          <td>41.7%</td>
+          <td><span class="pill under">-55.0 pts bajo ritmo</span></td>
+          <td class="remanente">233.13</td>
+          <td><span class="pill ok">12.08%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Posadas del Inca Yucay</td>
+          <td class="moneda">USD</td>
+          <td>476.11</td>
+          <td>479.89</td>
+          <td>99.2%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">3.78</td>
+          <td><span class="pill ok">10.52%</span></td>
+        </tr>
+        <tr>
+          <td>Hotel Sonesta Valledupar</td>
+          <td class="moneda">COP</td>
+          <td>4,409,453</td>
+          <td>4,665,000</td>
+          <td>94.5%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">255,547</td>
+          <td><span class="pill canal-alto">19.26%</span></td>
+        </tr>
+        <tr>
+          <td>Irotama Resort</td>
+          <td class="moneda">COP</td>
+          <td>33,010,976</td>
+          <td>35,000,000</td>
+          <td>94.3%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">1,989,024</td>
+          <td><span class="pill canal-alto">21.21%</span></td>
+        </tr>
+        <tr>
+          <td>Latam Hotel Plaza Pradera Quetzaltenango</td>
+          <td class="moneda">USD</td>
+          <td>491.72</td>
+          <td>540.00</td>
+          <td>91.1%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">48.28</td>
+          <td><span class="pill canal-alto">17.54%</span></td>
+        </tr>
+        <tr>
+          <td>Makani Luxury Wanderlust</td>
+          <td class="moneda">COP</td>
+          <td>0</td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+          <td class="remanente"><span class="sin-dato">s/d</span></td>
+          <td><span class="sin-dato">s/d</span></td>
+        </tr>
+        <tr>
+          <td>Park Lake Luxury Hotel</td>
+          <td class="moneda">USD</td>
+          <td>2,772.08</td>
+          <td>3,239.00</td>
+          <td>85.6%</td>
+          <td><span class="pill under">-11.1 pts bajo ritmo</span></td>
+          <td class="remanente">466.92</td>
+          <td><span class="pill canal-alto">14.28%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Arequipa</td>
+          <td class="moneda">USD</td>
+          <td>626.86</td>
+          <td>840.00</td>
+          <td>74.6%</td>
+          <td><span class="pill under">-22.0 pts bajo ritmo</span></td>
+          <td class="remanente">213.14</td>
+          <td><span class="pill canal-alto">14.06%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Bucaramanga</td>
+          <td class="moneda">COP</td>
+          <td>5,747,606</td>
+          <td>6,321,000</td>
+          <td>90.9%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">573,394</td>
+          <td><span class="pill canal-alto">16.97%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Cali</td>
+          <td class="moneda">COP</td>
+          <td>4,745,770</td>
+          <td>7,505,000</td>
+          <td>63.2%</td>
+          <td><span class="pill under">-33.4 pts bajo ritmo</span></td>
+          <td class="remanente">2,759,230</td>
+          <td><span class="pill canal-alto">24.00%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Cusco</td>
+          <td class="moneda">USD</td>
+          <td>561.79</td>
+          <td>1,050.00</td>
+          <td>53.5%</td>
+          <td><span class="pill under">-43.2 pts bajo ritmo</span></td>
+          <td class="remanente">488.21</td>
+          <td><span class="pill ok">10.34%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Ibague</td>
+          <td class="moneda">COP</td>
+          <td>2,857,058</td>
+          <td>3,180,000</td>
+          <td>89.8%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">322,942</td>
+          <td><span class="pill canal-alto">13.12%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Loja</td>
+          <td class="moneda">USD</td>
+          <td>167.35</td>
+          <td>200.00</td>
+          <td>83.7%</td>
+          <td><span class="pill under">-13.0 pts bajo ritmo</span></td>
+          <td class="remanente">32.65</td>
+          <td><span class="pill canal-alto">14.52%</span></td>
+        </tr>
+        <tr>
+          <td>Sonesta Hotel Miraflores</td>
+          <td class="moneda">USD</td>
+          <td>928.29</td>
+          <td>1,019.57</td>
+          <td>91.0%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">91.28</td>
+          <td><span class="pill canal-alto">24.08%</span></td>
+        </tr>
+        <tr>
+          <td>Torre Monserrate (Tequendama)</td>
+          <td class="moneda">COP</td>
+          <td>5,296,055</td>
+          <td>5,400,000</td>
+          <td>98.1%</td>
+          <td><span class="pill ok">en ritmo</span></td>
+          <td class="remanente">103,945</td>
+          <td><span class="pill canal-alto">13.97%</span></td>
+        </tr></tbody>
+    </table>
+    </div>
+</section>
+
+    <footer>
+      <div class="note">
+        Inversión a la fecha y costo por canal calculados con la misma fuente y fórmula que el
+        pipeline CRS OTB (Repo_GoogleAds.xlsx vía Google Ads API + costo_por_canal_resumen.xlsx).
+        Inversión aprobada del mes es un dato manual provisto por la usuaria.
+        Ritmo esperado = días transcurridos del mes / días totales del mes.
+      </div>
+      <div>Actualizado automáticamente — generar_html_consumo_ads.py</div>
+    </footer>
+</div>
+</body>
+</html>
