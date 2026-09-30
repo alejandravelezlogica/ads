@@ -127,14 +127,15 @@
   table.consumo td:first-child{text-align:left; font-weight:600; color:var(--text)}
   table.consumo td.moneda{color:var(--text-dim); font-weight:400; text-align:center}
   table.consumo tbody tr:hover{background:var(--surface-2)}
-  table.consumo th:nth-child(1), table.consumo td:nth-child(1){width:19%}
-  table.consumo th:nth-child(2), table.consumo td:nth-child(2){width:6%}
-  table.consumo th:nth-child(3), table.consumo td:nth-child(3){width:12%}
-  table.consumo th:nth-child(4), table.consumo td:nth-child(4){width:12%}
-  table.consumo th:nth-child(5), table.consumo td:nth-child(5){width:13%}
-  table.consumo th:nth-child(6), table.consumo td:nth-child(6){width:15%}
-  table.consumo th:nth-child(7), table.consumo td:nth-child(7){width:12%}
-  table.consumo th:nth-child(8), table.consumo td:nth-child(8){width:11%}
+  table.consumo th:nth-child(1), table.consumo td:nth-child(1){width:17%}
+  table.consumo th:nth-child(2), table.consumo td:nth-child(2){width:5%}
+  table.consumo th:nth-child(3), table.consumo td:nth-child(3){width:11%}
+  table.consumo th:nth-child(4), table.consumo td:nth-child(4){width:11%}
+  table.consumo th:nth-child(5), table.consumo td:nth-child(5){width:12%}
+  table.consumo th:nth-child(6), table.consumo td:nth-child(6){width:13%}
+  table.consumo th:nth-child(7), table.consumo td:nth-child(7){width:11%}
+  table.consumo th:nth-child(8), table.consumo td:nth-child(8){width:10%}
+  table.consumo th:nth-child(9), table.consumo td:nth-child(9){width:10%}
   .pill{display:inline-block; padding:2px 8px; border-radius:20px; font-weight:700; font-size:11px; white-space:nowrap}
   .pill.over{background:var(--neg-bg); color:var(--neg)}
   .pill.under{background:var(--neu-bg); color:var(--neu)}
@@ -154,7 +155,7 @@
       <div class="sub">
         <span>Corte: <b>2026-09-30</b></span>
         <span>Inicio de mes: <b>2026-09-01</b></span>
-        <span>Generado: <b>30/09/2026 08:06</b></span>
+        <span>Generado: <b>30/09/2026 09:59</b></span>
       </div>
     </div>
 <div class="wrap" style="padding-top:24px">
@@ -180,7 +181,8 @@
           <th>¿Qué % del aprobado se ha invertido?</th>
           <th>Ritmo vs esperado</th>
           <th>Remanente del mes</th>
-          <th>Costo por Canal</th>
+          <th>Costo por canal (mes actual)</th>
+          <th>Costo por canal acumulado año</th>
         </tr>
       </thead>
       <tbody>
@@ -193,6 +195,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente neg">-15,229</td>
           <td><span class="pill canal-alto">23%</span></td>
+          <td><span class="pill canal-alto">20%</span></td>
         </tr>
         <tr>
           <td>GHL Armeria Real Hotel and Spa</td>
@@ -203,6 +206,7 @@
           <td><span class="pill under">-34.0 pts</span></td>
           <td class="remanente">1,259,489</td>
           <td><span class="pill ok">13%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>GHL Arsenal Hotel</td>
@@ -213,6 +217,7 @@
           <td><span class="pill under">-28.3 pts</span></td>
           <td class="remanente">2,531,062</td>
           <td><span class="pill ok">11%</span></td>
+          <td><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>GHL Hotel Barranquilla</td>
@@ -223,6 +228,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">324,127</td>
           <td><span class="pill canal-alto">20%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>GHL Hotel Lago Titicaca</td>
@@ -233,6 +239,7 @@
           <td><span class="pill under">-13.0 pts</span></td>
           <td class="remanente">51.94</td>
           <td><span class="pill ok">12%</span></td>
+          <td><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>GHL San Lazaro Art Hotel</td>
@@ -243,6 +250,7 @@
           <td><span class="pill under">-29.3 pts</span></td>
           <td class="remanente">1,245,146</td>
           <td><span class="pill canal-alto">48%</span></td>
+          <td><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>GHL Style Hotel Bogotá Occidente</td>
@@ -253,6 +261,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">249,374</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Geotel Antofagasta</td>
@@ -262,6 +271,7 @@
           <td>77.1%</td>
           <td><span class="pill under">-22.9 pts</span></td>
           <td class="remanente">170.87</td>
+          <td><span class="pill ok">12%</span></td>
           <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
@@ -273,6 +283,7 @@
           <td><span class="pill under">-29.4 pts</span></td>
           <td class="remanente">180.71</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel Bioxury</td>
@@ -283,6 +294,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">343,111</td>
           <td><span class="pill ok">13%</span></td>
+          <td><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Abadía Plaza</td>
@@ -293,6 +305,7 @@
           <td><span class="pill under">-40.4 pts</span></td>
           <td class="remanente">892,004</td>
           <td><span class="pill canal-alto">44%</span></td>
+          <td><span class="pill canal-alto">24%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Capital</td>
@@ -302,6 +315,7 @@
           <td>92.6%</td>
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">715,889</td>
+          <td><span class="pill ok">14%</span></td>
           <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
@@ -313,6 +327,7 @@
           <td><span class="pill under">-18.3 pts</span></td>
           <td class="remanente">320,163</td>
           <td><span class="pill canal-alto">20%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Grand Villavicencio</td>
@@ -323,6 +338,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">346,872</td>
           <td><span class="pill ok">15%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Hamilton</td>
@@ -333,6 +349,7 @@
           <td><span class="pill under">-19.5 pts</span></td>
           <td class="remanente">372,741</td>
           <td><span class="pill ok">15%</span></td>
+          <td><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Montería</td>
@@ -343,6 +360,7 @@
           <td><span class="pill under">-36.3 pts</span></td>
           <td class="remanente">1,089,280</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Portón Medellín</td>
@@ -352,6 +370,7 @@
           <td>89.1%</td>
           <td><span class="pill under">-10.9 pts</span></td>
           <td class="remanente">314,387</td>
+          <td><span class="pill ok">14%</span></td>
           <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
@@ -363,6 +382,7 @@
           <td><span class="pill under">-26.7 pts</span></td>
           <td class="remanente">5,558,714</td>
           <td><span class="pill canal-alto">24%</span></td>
+          <td><span class="pill canal-alto">17%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Costa Azul</td>
@@ -373,6 +393,7 @@
           <td><span class="pill under">-11.7 pts</span></td>
           <td class="remanente">1,315,904</td>
           <td><span class="pill canal-alto">25%</span></td>
+          <td><span class="pill canal-alto">15%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Hotel Club El Puente</td>
@@ -383,6 +404,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">36,850</td>
           <td><span class="pill canal-alto">17%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Relax Sunrise</td>
@@ -393,6 +415,7 @@
           <td><span class="pill under">-14.4 pts</span></td>
           <td class="remanente">2,199,868</td>
           <td><span class="pill canal-alto">22%</span></td>
+          <td><span class="pill canal-alto">15%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Barrancabermeja</td>
@@ -403,6 +426,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">7,309</td>
           <td><span class="pill canal-alto">23%</span></td>
+          <td><span class="pill canal-alto">17%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Neiva</td>
@@ -413,6 +437,7 @@
           <td><span class="pill under">-38.6 pts</span></td>
           <td class="remanente">1,336,155</td>
           <td><span class="pill canal-alto">16%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel GHL Style Yopal</td>
@@ -423,6 +448,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">97,627</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Bogotá</td>
@@ -433,6 +459,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">242,813</td>
           <td><span class="pill canal-alto">18%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Cartagena</td>
@@ -443,6 +470,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">831,843</td>
           <td><span class="pill canal-alto">22%</span></td>
+          <td><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta El Olivar</td>
@@ -453,6 +481,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">88.32</td>
           <td><span class="pill canal-alto">17%</span></td>
+          <td><span class="pill ok">15%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Osorno</td>
@@ -463,6 +492,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">55.08</td>
           <td><span class="pill ok">12%</span></td>
+          <td><span class="pill ok">11%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Pereira</td>
@@ -473,6 +503,7 @@
           <td><span class="pill under">-36.7 pts</span></td>
           <td class="remanente">3,222,883</td>
           <td><span class="pill canal-alto">17%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Posadas del Inca Puno</td>
@@ -483,6 +514,7 @@
           <td><span class="pill under">-56.2 pts</span></td>
           <td class="remanente">224.87</td>
           <td><span class="pill ok">12%</span></td>
+          <td><span class="pill canal-alto">16%</span></td>
         </tr>
         <tr>
           <td>Hotel Sonesta Posadas del Inca Yucay</td>
@@ -492,6 +524,7 @@
           <td>99.3%</td>
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">3.47</td>
+          <td><span class="pill ok">11%</span></td>
           <td><span class="pill ok">11%</span></td>
         </tr>
         <tr>
@@ -503,6 +536,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">193,331</td>
           <td><span class="pill canal-alto">19%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Irotama Resort</td>
@@ -513,6 +547,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">1,386,158</td>
           <td><span class="pill canal-alto">21%</span></td>
+          <td><span class="pill ok">14%</span></td>
         </tr>
         <tr>
           <td>Latam Hotel Plaza Pradera Quetzaltenango</td>
@@ -523,6 +558,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">24.21</td>
           <td><span class="pill canal-alto">18%</span></td>
+          <td><span class="pill canal-alto">19%</span></td>
         </tr>
         <tr>
           <td>Park Lake Luxury Hotel</td>
@@ -533,6 +569,7 @@
           <td><span class="pill under">-12.2 pts</span></td>
           <td class="remanente">396.46</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Arequipa</td>
@@ -543,6 +580,7 @@
           <td><span class="pill under">-17.2 pts</span></td>
           <td class="remanente">144.24</td>
           <td><span class="pill ok">15%</span></td>
+          <td><span class="pill canal-alto">20%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Bucaramanga</td>
@@ -553,6 +591,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">386,451</td>
           <td><span class="pill canal-alto">17%</span></td>
+          <td><span class="pill canal-alto">15%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Cali</td>
@@ -563,6 +602,7 @@
           <td><span class="pill under">-31.2 pts</span></td>
           <td class="remanente">2,338,285</td>
           <td><span class="pill canal-alto">25%</span></td>
+          <td><span class="pill canal-alto">17%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Cusco</td>
@@ -573,6 +613,7 @@
           <td><span class="pill under">-43.5 pts</span></td>
           <td class="remanente">456.36</td>
           <td><span class="pill ok">11%</span></td>
+          <td><span class="pill ok">12%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Ibague</td>
@@ -583,6 +624,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">112,114</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill ok">13%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Loja</td>
@@ -593,6 +635,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">12.95</td>
           <td><span class="pill canal-alto">15%</span></td>
+          <td><span class="pill canal-alto">17%</span></td>
         </tr>
         <tr>
           <td>Sonesta Hotel Miraflores</td>
@@ -603,6 +646,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">14.91</td>
           <td><span class="pill canal-alto">25%</span></td>
+          <td><span class="pill canal-alto">34%</span></td>
         </tr>
         <tr>
           <td>Torre Monserrate (Tequendama)</td>
@@ -613,6 +657,7 @@
           <td><span class="pill ok">En ritmo</span></td>
           <td class="remanente">46,754</td>
           <td><span class="pill ok">14%</span></td>
+          <td><span class="pill canal-alto">16%</span></td>
         </tr></tbody>
     </table>
     </div>
@@ -622,6 +667,8 @@
       <div class="note">
         Inversión a la fecha y costo por canal calculados con la misma fuente y fórmula que el
         pipeline CRS OTB (Repo_GoogleAds.xlsx vía Google Ads API + costo_por_canal_resumen.xlsx).
+        Costo por canal (mes actual) es el % del mes vigente; acumulado año se recalcula sobre
+        los totales de inversión y revenue sumados desde el 1 de enero, no un promedio de %.
         Inversión aprobada del mes es un dato manual provisto por la usuaria.
         Ritmo esperado = días transcurridos del mes / días totales del mes.
       </div>
